@@ -52,6 +52,8 @@ When the request is successful, the API returns a JSON object with the following
 ### Example Request
 
 ```bash
+# That is an example defaultDatasetId value
+
 curl -G 'http://yourdomain.com/get-by-id' \
      --data-urlencode 'defaultDatasetId=dataset_77ca322a20b511fa33e1dde5cd85a74c501305768bc2c5cfb7ad66aa5b4ac238' \
      --data-urlencode 'token=your_auth_token'
