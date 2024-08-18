@@ -57,7 +57,7 @@ class HTMLToMarkdownFormatter
 
                 for (const attribute of element.attributes) 
                 {
-                    console.log(`name: ${attribute.name}`);
+                    //console.log(`name: ${attribute.name}`);
                     if (attribute.name === "src") 
                     {
                         source = attribute.value;
@@ -83,7 +83,7 @@ class HTMLToMarkdownFormatter
                     this.markdown += "Alt: " + alt;
                 }
 
-                console.log("\n");
+                //console.log("\n");
             } 
             else if (name === "br") 
             {
@@ -97,7 +97,7 @@ class HTMLToMarkdownFormatter
                     this.traverseTree(child, indentCount + 1);
                 }
 
-                console.log("\n");
+                //console.log("\n");
 
                 return;
             }
