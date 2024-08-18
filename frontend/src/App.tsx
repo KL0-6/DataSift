@@ -24,8 +24,8 @@ const App: React.FC = () =>
       bgColor: "bg-gradient-to-r from-green-500 to-teal-500",
     },
     {
-      title: "Highly Scalable",
-      description: "Future versions of DataSift will support massive parallel requests, handling large-scale operations with ease.",
+      title: "Open Source",
+      description: "DataSift is open source so you can view our code and improve it to your needs!",
       icon: <FaCogs className="text-white text-5xl" />,
       bgColor: "bg-gradient-to-r from-yellow-500 to-orange-500",
     },
@@ -54,15 +54,15 @@ const App: React.FC = () =>
 
   const testimonials = [
     {
-      name: "John Doe",
-      role: "CEO at TechStartup",
-      testimony: "DataSift's early access version shows promise. We're excited to see how it evolves!",
+      name: "You",
+      role: "",
+      testimony: "This is pretty cool",
     },
     {
-      name: "Jane Smith",
-      role: "Lead Developer at FinTechCo",
-      testimony: "Looking forward to the full release. The current demo is already a game-changer.",
-    },
+      name: "JDP",
+      role: "Developer",
+      testimony: "fresh code mmmmm",
+    }
   ];
 
   return (
@@ -70,7 +70,7 @@ const App: React.FC = () =>
       <motion.div className="flex flex-col min-h-screen bg-white" initial="hidden" animate="visible" variants={staggerContainer}>
         <Navbar />
         <Routes>
-          <Route path="/" element={
+          <Route path="/datasift" element={
             <>
               <section className="text-center py-24 px-6 bg-white mt-16">
                 <motion.h1 className="text-4xl md:text-6xl font-bold" variants={fadeInUp} transition={{ duration: 0.3 }}>The Next Generation Web Scraping API</motion.h1>
@@ -78,9 +78,11 @@ const App: React.FC = () =>
                   DataSift is in development, but we are building towards an unparalleled experience in web scraping. 
                   Try out our early access and let us know what you think.
                 </motion.p>
-                <motion.a href="/try" className="mt-8 inline-block text-white bg-primary py-3 px-8 rounded-full text-lg" variants={fadeInUp} whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
+
+                <motion.a href="/datasift/try" className="mt-8 inline-block text-white bg-primary py-3 px-8 rounded-full text-lg" variants={fadeInUp} whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
                   Try it out
                 </motion.a>
+
               </section>
               <section className="py-20 bg-gray-50">
                 <div className="max-w-6xl mx-auto px-6">
@@ -136,7 +138,7 @@ const App: React.FC = () =>
               </section>
             </>
           } />
-          <Route path="/try" element={<Try />} />
+          <Route path="/datasift/try" element={<Try />} />
         </Routes>
         <footer className="bg-primary text-white py-8">
           <div className="max-w-6xl mx-auto px-6 text-center">

@@ -14,6 +14,7 @@ const Try: React.FC = () =>
 	const handleScrape = async () => 
 	{
 		setIsFetching(true);
+        
 		try 
 		{
 			let apiUrl = `https://kl0-6.com/api/datasift/datasift-p2p-incomingAPI?url_to_scrape=${encodeURIComponent(url)}&token=DataSift_7f9b56b70bcf5cab44adc57f52042b6fac4df5d38a4880174cb1dbb79c4f0617`;
@@ -33,15 +34,13 @@ const Try: React.FC = () =>
 			const data = await response.json();
 			setResult(JSON.stringify(data, null, 2)); // Beautifies the JSON output with 2 spaces indentation
 			setError(null);
+            setIsFetching(false);
 		} 
 		catch (err) 
 		{
 			setError("Failed to fetch data. Please try again.");
 			setResult(null);
-		}
-		finally 
-		{
-			setIsFetching(false);
+            setIsFetching(false);
 		}
 	};
 
