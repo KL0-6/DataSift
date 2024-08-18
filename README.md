@@ -2,6 +2,8 @@
 
 DataSift is a powerful web scraping tool built with Puppeteer, designed to extract and process data from websites efficiently. DataSift makes it easy to gather and utilize web data for various purposes.
 
+[View our documentation](./documentation/Documentation.md)
+
 ## Features
 
 - **Headless Browsing**: Leverages Puppeteer for headless browsing, allowing for efficient and fast data scraping.
