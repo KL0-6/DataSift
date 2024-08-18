@@ -33,7 +33,9 @@ npm run dev
 
 ### Backend
 
-Install Google Chrome for Puppeteer
+Our backend needs some prerequisites as well. We need to install Google Chrome, and setup ollama.
+
+Install Google Chrome for Puppeteer.
 
 ```bash
 # Chrome dependencies
@@ -44,6 +46,14 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 sudo apt --fix-broken install -y
 ```
+
+Install ollama
+
+```
+curl -fsSL https://ollama.com/install.sh | sh
+ollama run llama3.1
+```
+
 #### Running backend
 
 ```bash
