@@ -12,7 +12,7 @@ This endpoint is used to scrape web data from a specified URL and return the pro
 - **Required Parameters**: `url_to_scrape`, `token`
 - **Optional Parameters**: `timeout`, `waitBeforeScraping`, `shouldCategorize`
 
-[Detailed Documentation for `/datasift-p2p-incomingAPI`](./documentation/datasift-p2p-incomingAPI.md)
+[Detailed Documentation for `/datasift-p2p-incomingAPI`](./datasift-p2p-incomingAPI.md)
 
 ### 2. `/get-by-id` (GET) 📜
 
@@ -21,7 +21,7 @@ This endpoint retrieves a dataset by its unique identifier. It decompresses and 
 - **Functionality**: Retrieves a dataset from the database and returns its HTML, markdown, and text content.
 - **Required Parameters**: `defaultDatasetId`, `token`
 
-[Detailed Documentation for `/get-by-id`](./documentation/get-by-id.md)
+[Detailed Documentation for `/get-by-id`](./get-by-id.md)
 
 ### 3. `/delete-by-id` (DELETE) 🗑️
 
@@ -30,7 +30,7 @@ This endpoint deletes a dataset from the database using its unique identifier. I
 - **Functionality**: Deletes a dataset from the database based on its ID.
 - **Required Parameters**: `defaultDatasetId`, `token`
 
-[Detailed Documentation for `/delete-by-id`](./documentation/delete-by-id.md)
+[Detailed Documentation for `/delete-by-id`](./delete-by-id.md)
 
 ## Common Response Format
 
