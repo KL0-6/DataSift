@@ -1,0 +1,31 @@
+{
+    "description": "MyComponent is a component that does something amazing.",
+    "props": [
+      {
+        "name": "title",
+        "type": {
+          "name": "string"
+        },
+        "description": "The title of the component.",
+        "defaultValue": {
+          "value": "\"Default Title\""
+        }
+      },
+      {
+        "name": "onClick",
+        "type": {
+          "name": "function",
+          "signature": {
+            "return": {
+              "name": "void"
+            }
+          }
+        },
+        "description": "Function to call on click.",
+        "defaultValue": {
+          "value": "undefined"
+        }
+      }
+    ]
+  }
+  
