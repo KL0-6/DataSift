@@ -48,6 +48,10 @@ When the request is successful, the API returns a JSON object with the following
 - **`category`** (if `shouldCategorize=true` was specified):
   - **Type**: `string` or `null`
   - **Description**: The category assigned to the web page by the language model. This field is included if the `shouldCategorize` parameter was set to `true`. It is `null` if `shouldCategorize` was set to `false`.
+ 
+- **`summary`** (if `shouldSummarize=true` is specified):
+  - **Type**: `string` or `null`
+  - **Description**: The summary of the HTML given to the web page by the language model. This field is included if the `shouldSummarize` parameter was set to `true`. It is `null` if `shouldSummarize` was set to `false`.
 
 ### Example Request
 
