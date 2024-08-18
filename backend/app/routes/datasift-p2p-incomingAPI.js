@@ -5,7 +5,7 @@ const crypto = require("crypto");
 const zlib = require("zlib");
 
 const mongoDB = require("../public/mongodb/mongodb.js");
-const { categorizeWebsite } = require("../public/NLP/NLP.js")
+const { categorizeWebsite, summarizeWebsite } = require("../public/NLP/NLP.js")
 const { errorCounter } = require("../public/prometheus/prometheus.js");
 const { HTMLToMarkdown } = require("../public/HTMLToMarkdown/HTMLToMarkdown.js"); // Written by Alex, github.com/Alexflamer11/HtmlToAst, ported from C++ to JS
 
@@ -73,11 +73,12 @@ router.get("/", async function(req, res)
     {
         errorCounter.inc({ error_name: error.toString(), route: "/datasift-p2p-incomingAPI" });
 
-        return res.status(500).json({ error: "Internal server error" });
+        return res.status(500).json({ error: "Internal server error!" });
     }
 
     const timeout = getParameter(query, "timeout", 10) * 1000; // Default is 10 seconds
     const waitBeforeScraping = getParameter(query, "waitBeforeScraping", 0) * 1000; // Default is 0 second
+    const shouldSummarize = getParameter(query, "shouldSummarize", false); // Default is false
     const shouldCategorize = getParameter(query, "shouldCategorize", false); // Default is false
 
     // Set randomized User-Agent and platform
@@ -189,10 +190,15 @@ router.get("/", async function(req, res)
         // Create a uniqueId for this query
         const defaultDatasetId = generateDatasetId(pageSource);
 
-        // Use NLP to categorize website text
+        // NLP stuff
+        let summary = null;
         let category = null;
+
+        if(shouldSummarize)
+            summary = await summarizeWebsite(pageSource);
+
         if(shouldCategorize)
-            category = await categorizeWebsite(textContent);
+            category = await categorizeWebsite(textContent).then(data => data.replace(" ", "").split("\n")[0]);
 
         // Insert into mongodb
         await mongoDB.insertDataset(token, defaultDatasetId, 
@@ -201,6 +207,7 @@ router.get("/", async function(req, res)
             html_content: zlib.gzipSync(pageSource).toString("base64"),
             markdown_content: zlib.gzipSync(pageMarkdown).toString("base64"),
             text_content: zlib.gzipSync(textContent).toString("base64"),
+            summary: summary ? zlib.gzipSync(summary).toString("base64") : null,
             category: category,
             timestamp: new Date()
         });
@@ -210,6 +217,7 @@ router.get("/", async function(req, res)
             html_content: pageSource,
             markdown_content: pageMarkdown,
             text_content: textContent,
+            summary: summary,
             category: category
         });
     }
@@ -217,7 +225,7 @@ router.get("/", async function(req, res)
     {
         errorCounter.inc({ error_name: error.toString(), route: "/datasift-p2p-incomingAPI" });
 
-        return res.status(500).json({ error: "Internal server error" });
+        return res.status(500).json({ error: "Internal server error!!" });
     }
     finally
     {

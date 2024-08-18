@@ -31,7 +31,10 @@ router.get("/", async function(req, res)
         const htmlContent = zlib.gunzipSync(Buffer.from(document.html_content, "base64")).toString();
         const markdownContent = zlib.gunzipSync(Buffer.from(document.markdown_content, "base64")).toString();
         const textContent = zlib.gunzipSync(Buffer.from(document.text_content, "base64")).toString();
-    
+        let summary = document.summary;
+        if(summary)
+            summary = zlib.gunzipSync(Buffer.from(summary, "base64")).toString();;
+
         // Respond with the document data
         res.json({
             defaultDatasetId: document.defaultDatasetId,
@@ -39,6 +42,7 @@ router.get("/", async function(req, res)
             html_content: htmlContent,
             markdown_content: markdownContent,
             text_content: textContent,
+            summary: summary,
             category: document.category,
             timestamp: document.timestamp
         });
